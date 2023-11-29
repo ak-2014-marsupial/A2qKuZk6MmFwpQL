@@ -1,0 +1,52 @@
+.movie_info {
+    color: inherit;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrap_image {
+    width: 30vw;
+    aspect-ratio: 0.8;
+    margin-bottom: 1em;
+
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    border-radius: 1em;
+}
+.wrap_image img{
+    border-radius: 1em;
+}
+
+.title {
+    color: var(--text-secondary);
+    width: 70%;
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 0.8em;
+
+}
+.content{
+    width: 70%;
+    color: var(--text-primary);
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+}
+.genre_container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5em;
+    width: 100%;
+    margin: 0.5em 0;
+
+
+}
+.runtime{
+    margin-bottom: 0.5em;
+
+    color:var(--text-primary);
+}
+

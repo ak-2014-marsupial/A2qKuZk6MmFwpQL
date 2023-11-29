@@ -1,0 +1,17 @@
+.actor_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+    gap: 2em;
+}
+
+h2 {
+    width: 95%;
+    margin-top: 1.5em;
+    padding-bottom: 0.2em;
+    color: var(--text-secondary);
+    text-align: center;
+    border-bottom: 0.2em solid var(--accent-hover);
+}

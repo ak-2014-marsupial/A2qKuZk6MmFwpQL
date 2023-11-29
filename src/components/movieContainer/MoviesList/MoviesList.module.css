@@ -1,0 +1,10 @@
+
+.movies{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /*padding: 0.5em;*/
+    gap: 0.5em;
+}

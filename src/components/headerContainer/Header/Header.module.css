@@ -1,0 +1,51 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-primary);
+    height: 10vh;
+
+    position: sticky;
+    top: 0;
+    opacity: 0.9;
+    z-index: 20;
+    background-color: var(--background);
+    font-size: 1.4em;
+    margin-top: 0.3em;
+    font-weight: bold;
+}
+
+.header a {
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+}
+
+.header a[class="active"] {
+    color: red;
+}
+
+.col_1 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 3.5em;
+    width: 70%;
+
+}
+.col_1 div{
+    cursor: pointer;
+}
+
+.col_2 {
+    display: flex;
+    gap: 0.5em;
+}
+
+
+.avatar {
+    height: 100%;
+    color: var(--text-secondary);
+    font-size: 0.7em;
+    margin-right: 0.5em;
+}
