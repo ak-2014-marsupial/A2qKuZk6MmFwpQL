@@ -13,9 +13,15 @@ import {Loader} from "../../Loader";
 
 const MovieInfo: FC = () => {
 
-    const {movieInfo} = useAppSelector(state => state.movieInfo);
+    // This code doesn't work, I'd really like to know why:
+    // ====================================================================================
+    // const {movieInfo,loadingMovieInfo} = useAppSelector(state => state.movieInfo);
+    // if (loadingMovieInfo) return <Loader/>
+    // ====================================================================================
 
-    if (!movieInfo) return <Loader/>
+    const {movieInfo} = useAppSelector(state => state.movieInfo);
+    if(!movieInfo) return <Loader/>
+
 
     const {poster_path, title, release_date, vote_average, genres, runtime, overview} = movieInfo;
     return (

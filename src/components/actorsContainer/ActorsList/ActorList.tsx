@@ -3,11 +3,13 @@ import React, {FC} from 'react';
 import {ActorListCard} from "../ActorListCard";
 import css from "./ActorsList.module.css";
 import {useAppSelector} from "../../../hooks";
+import {Loader} from "../../Loader";
 
 
 const ActorList: FC = () => {
 
-    const {actors} = useAppSelector(state => state.movieInfo);
+    const {actors,loadingActors} = useAppSelector(state => state.movieInfo);
+    if(loadingActors)return <Loader/>
     return (
         <>
             <h2>Actors list:</h2>

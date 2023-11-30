@@ -1,10 +1,12 @@
-import {createAsyncThunk, createSlice, isFulfilled, PayloadAction} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, isFulfilled, isPending, isRejected, PayloadAction} from "@reduxjs/toolkit";
 import {IMovieEntries} from "../../interfaces";
 import {AxiosError} from "axios";
 import {moviesService} from "../../services";
 
 interface IMoveInitialState extends IMovieEntries {
     filter: string;
+    loading:boolean;
+    errors:boolean,
 }
 
 const initialState: IMoveInitialState = {
@@ -13,6 +15,8 @@ const initialState: IMoveInitialState = {
     total_pages: 0,
     total_results: null,
     filter: null,
+    loading:false,
+    errors:false,
 }
 
 const getAll = createAsyncThunk<IMovieEntries, { page: string }>(
@@ -91,6 +95,16 @@ const movieSlice = createSlice({
                 state.total_pages = total_pages;
                 state.page = page;
                 state.total_results = total_results;
+                state.loading=false;
+                state.errors=false;
+            })
+            .addMatcher(isPending(getAll,getAllByGenreId,searchMoviesByName),(state)=>{
+                state.loading=true;
+            })
+            .addMatcher(isRejected(getAll,getAllByGenreId,searchMoviesByName),(state)=>{
+                state.loading=false;
+                state.errors=true;
+
             })
 })
 

@@ -1,0 +1,29 @@
+.error{
+    height: 50vh;
+    margin:  auto;
+    position: relative;
+
+
+
+}
+
+.error img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+
+    border: 1px solid var(--border);
+    background-color: var(--accent);
+    box-shadow: var(--shadow);
+    transition: all ease 500ms;
+
+}
+.error h1{
+    position: absolute;
+    top:20vh;
+    font-size: 4em;
+    left:-1em;
+    right: -2em;
+    color: var(--text-secondary);
+}

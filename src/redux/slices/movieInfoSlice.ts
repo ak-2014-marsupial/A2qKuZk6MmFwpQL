@@ -7,11 +7,15 @@ import {moviesService} from "../../services";
 interface IMovieInfoState {
     movieInfo: IMovieInfo,
     actors: IActor[],
+    loadingMovieInfo:boolean,
+    loadingActors:boolean,
 }
 
 const initialState: IMovieInfoState = {
     movieInfo: null,
     actors: null,
+    loadingActors:false,
+    loadingMovieInfo:false,
 }
 const getMovieInfo = createAsyncThunk<IMovieInfo, { id: string }>(
     "movieInfoSlice/getMovieInfo",
@@ -53,9 +57,17 @@ const movieInfoSlice = createSlice({
         builder
             .addCase(getMovieInfo.fulfilled, (state, {payload}) => {
                 state.movieInfo = payload;
+                state.loadingMovieInfo=false;
+            })
+            .addCase(getMovieInfo.pending,(state)=>{
+                state.loadingMovieInfo=true;
             })
             .addCase(getActors.fulfilled, (state, {payload}) => {
                 state.actors = payload.cast;
+                state.loadingActors=false;
+            })
+            .addCase(getActors.pending,(state)=>{
+                state.loadingActors=true;
             })
 });
 

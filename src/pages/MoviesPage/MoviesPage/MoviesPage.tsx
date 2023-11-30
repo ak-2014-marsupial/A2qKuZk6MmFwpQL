@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {MoviesList} from "../../components";
-import {SideBar} from "../../components/SideBar";
+import {MoviesList} from "../../../components";
+import {SideBar} from "../../../components/SideBar";
 import css from "./MoviesPage.module.css"
 
 const MoviesPage = () => {
