@@ -5,8 +5,8 @@ import {moviesService} from "../../services";
 
 interface IMoveInitialState extends IMovieEntries {
     filter: string;
-    loading:boolean;
-    errors:boolean,
+    loading: boolean;
+    errors: boolean,
 }
 
 const initialState: IMoveInitialState = {
@@ -15,8 +15,8 @@ const initialState: IMoveInitialState = {
     total_pages: 0,
     total_results: null,
     filter: null,
-    loading:false,
-    errors:false,
+    loading: false,
+    errors: false,
 }
 
 const getAll = createAsyncThunk<IMovieEntries, { page: string }>(
@@ -71,39 +71,21 @@ const movieSlice = createSlice({
     },
     extraReducers: builder =>
         builder
-            // .addCase(getAll.fulfilled, (state, {payload}) => {
-            //     state.results = payload.results;
-            //     state.total_pages = payload.total_pages;
-            //     state.page = payload.page;
-            //     state.total_results = payload.total_results;
-            // })
-            // .addCase(getAllByGenreId.fulfilled, (state, {payload}) => {
-            //     state.results = payload.results;
-            //     state.total_pages = payload.total_pages;
-            //     state.page = payload.page;
-            //     state.total_results = payload.total_results;
-            // })
-            // .addCase(searchMoviesByName.fulfilled, (state, {payload}) => {
-            //     state.results = payload.results;
-            //     state.total_pages = payload.total_pages;
-            //     state.page = payload.page;
-            //     state.total_results = payload.total_results;
-            // })
-            .addMatcher(isFulfilled(getAll,getAllByGenreId,searchMoviesByName),(state,action)=>{
-                const {total_pages,results,page,total_results} = action.payload;
+            .addMatcher(isFulfilled(getAll, getAllByGenreId, searchMoviesByName), (state, action) => {
+                const {total_pages, results, page, total_results} = action.payload;
                 state.results = results;
                 state.total_pages = total_pages;
                 state.page = page;
                 state.total_results = total_results;
-                state.loading=false;
-                state.errors=false;
+                state.loading = false;
+                state.errors = false;
             })
-            .addMatcher(isPending(getAll,getAllByGenreId,searchMoviesByName),(state)=>{
-                state.loading=true;
+            .addMatcher(isPending(getAll, getAllByGenreId, searchMoviesByName), (state) => {
+                state.loading = true;
             })
-            .addMatcher(isRejected(getAll,getAllByGenreId,searchMoviesByName),(state)=>{
-                state.loading=false;
-                state.errors=true;
+            .addMatcher(isRejected(getAll, getAllByGenreId, searchMoviesByName), (state) => {
+                state.loading = false;
+                state.errors = true;
 
             })
 })

@@ -9,6 +9,7 @@ import {GenreBadge} from "../../GenreBadge";
 import {ActorList} from "../../actorsContainer";
 import {useAppSelector} from "../../../hooks";
 import {Loader} from "../../Loader";
+import {ErrorPage} from "../../../pages/MoviesPage";
 
 
 const MovieInfo: FC = () => {
@@ -19,8 +20,9 @@ const MovieInfo: FC = () => {
     // if (loadingMovieInfo) return <Loader/>
     // ====================================================================================
 
-    const {movieInfo} = useAppSelector(state => state.movieInfo);
-    if(!movieInfo) return <Loader/>
+    const {movieInfo,errors} = useAppSelector(state => state.movieInfo);
+    if(errors) return <ErrorPage/>;
+    if(!movieInfo) return <Loader/>;
 
 
     const {poster_path, title, release_date, vote_average, genres, runtime, overview} = movieInfo;

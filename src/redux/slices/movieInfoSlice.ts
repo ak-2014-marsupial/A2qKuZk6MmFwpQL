@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, isRejected} from "@reduxjs/toolkit";
 
 import {IActor, IActorEntries, IMovieInfo} from "../../interfaces";
 import {AxiosError} from "axios";
@@ -7,15 +7,17 @@ import {moviesService} from "../../services";
 interface IMovieInfoState {
     movieInfo: IMovieInfo,
     actors: IActor[],
-    loadingMovieInfo:boolean,
-    loadingActors:boolean,
+    loadingMovieInfo: boolean,
+    loadingActors: boolean,
+    errors: boolean,
 }
 
 const initialState: IMovieInfoState = {
     movieInfo: null,
     actors: null,
-    loadingActors:false,
-    loadingMovieInfo:false,
+    loadingActors: false,
+    loadingMovieInfo: false,
+    errors: false,
 }
 const getMovieInfo = createAsyncThunk<IMovieInfo, { id: string }>(
     "movieInfoSlice/getMovieInfo",
@@ -57,17 +59,24 @@ const movieInfoSlice = createSlice({
         builder
             .addCase(getMovieInfo.fulfilled, (state, {payload}) => {
                 state.movieInfo = payload;
-                state.loadingMovieInfo=false;
+                state.loadingMovieInfo = false;
+                state.errors=false;
             })
-            .addCase(getMovieInfo.pending,(state)=>{
-                state.loadingMovieInfo=true;
+            .addCase(getMovieInfo.pending, (state) => {
+                state.loadingMovieInfo = true;
             })
             .addCase(getActors.fulfilled, (state, {payload}) => {
                 state.actors = payload.cast;
-                state.loadingActors=false;
+                state.loadingActors = false;
+                state.errors=false;
             })
-            .addCase(getActors.pending,(state)=>{
-                state.loadingActors=true;
+            .addCase(getActors.pending, (state) => {
+                state.loadingActors = true;
+            })
+            .addMatcher(isRejected(getMovieInfo, getActors), (state) => {
+                state.loadingActors = false;
+                state.loadingMovieInfo = false;
+                state.errors = true;
             })
 });
 
