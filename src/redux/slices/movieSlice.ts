@@ -5,7 +5,7 @@ import {moviesService} from "../../services";
 
 interface IMoveInitialState extends IMovieEntries {
     filter: string;
-    filter2:{[key:string]:string} | null;
+    filter2:{genre?:string,search?:string} | null;
     loading: boolean;
     errors: boolean,
 }
@@ -68,6 +68,9 @@ const movieSlice = createSlice({
     reducers: {
         setFilter: (state, action: PayloadAction<string>) => {
             state.filter = action.payload;
+        },
+        setFilter2: (state, action: PayloadAction<{genre?:string,search?:string}>) => {
+            state.filter2 = action.payload;
         },
 
     },

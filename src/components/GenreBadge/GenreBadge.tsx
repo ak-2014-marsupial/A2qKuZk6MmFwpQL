@@ -3,29 +3,35 @@ import React, {FC} from 'react';
 import css from './GenreBadge.module.css'
 import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
 import {IGenre} from "../../interfaces";
-import {useAppDispatch} from "../../hooks";
+import {useAppDispatch, useAppSelector} from "../../hooks";
 import {movieActions} from "../../redux/slices";
 
 interface IProps {
     genre: IGenre,
-    selectedGenre?: number,
 }
 
-const GenreBadge: FC<IProps> = ({genre: {id, name}, selectedGenre}) => {
+const GenreBadge: FC<IProps> = ({genre: {id, name}}) => {
     const [, setQuery] = useSearchParams({"filter": null});
     const dispatch = useAppDispatch();
     const location = useLocation();
     const navigate = useNavigate();
 
+    const {filter2} = useAppSelector(state => state.movies);
+    const selectedGenre = filter2 && ("genre" in filter2) && +filter2.genre;
+
+
     const handleClick = (genreId: string) => {
-        if(`${selectedGenre}`===genreId) return;
-        dispatch(movieActions.setFilter( `    genre=${genreId}`));
-        if(!(location.pathname ==="/movies")){
+        if (`${selectedGenre}` === genreId) return;
+        dispatch(movieActions.setFilter(`    genre=${genreId}`));
+
+        dispatch(movieActions.setFilter2({genre: `${genreId}`}));
+
+        if (!(location.pathname === "/movies")) {
             navigate("/movies")
         }
         setQuery(prev => {
             prev.set('filter', `    genre=${genreId}`);
-            prev.set('page',"1");
+            prev.set('page', "1");
             return prev
         })
 
