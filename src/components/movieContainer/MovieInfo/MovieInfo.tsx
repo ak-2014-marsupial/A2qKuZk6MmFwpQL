@@ -11,6 +11,9 @@ import {useAppSelector} from "../../../hooks";
 import {Loader} from "../../Loader";
 import {ErrorPage} from "../../../pages/MoviesPage";
 
+import chevron from "../../../assets/images/chevron-left-icon.svg";
+
+
 
 const MovieInfo: FC = () => {
 
@@ -21,16 +24,20 @@ const MovieInfo: FC = () => {
     // ====================================================================================
 
     const {movieInfo,errors} = useAppSelector(state => state.movieInfo);
+    const {filter} = useAppSelector(state => state.movies);
     if(errors) return <ErrorPage/>;
     if(!movieInfo) return <Loader/>;
-
 
     const {poster_path, title, release_date, vote_average, genres, runtime, overview} = movieInfo;
     return (
         <div className={css.movie_info}>
-            <div className={css.wrap_image}>
-                <PosterPreview poster_path={poster_path} title={title}/>
-            </div>
+                {/*<div className={css.chevron}>⬅</div>*/}
+                <div className={css.wrap_image}>
+                    <PosterPreview poster_path={poster_path} title={title}/>
+                </div>
+
+
+
             <div className={css.title}>{title}</div>
             <div className={css.content}>{overview}</div>
             <StarRatings starRatedColor='var(--star-primary)'

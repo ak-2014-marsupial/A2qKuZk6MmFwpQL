@@ -21,9 +21,7 @@
     font-size: inherit;
 }
 
-.header a[class="active"] {
-    color: red;
-}
+
 
 .col_1 {
     display: flex;
@@ -48,4 +46,16 @@
     color: var(--text-secondary);
     font-size: 0.7em;
     margin-right: 0.5em;
+}
+
+.chevron {
+    color: var(--accent-hover);
+    font-size: 7em;
+    background-color: var(--background);
+    position:absolute;
+    left:0.5vw;
+    top:30vh;
+    opacity: 90%;
+    border-radius: 50%;
+
 }

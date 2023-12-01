@@ -13,15 +13,17 @@ const SideBar = () => {
 
     const [query] = useSearchParams({});
     const currentPage = +query.get('page') ? +query.get('page') : 1;
-    const currentFilter: string = query.get('filter');
 
-    // const {filter} = useAppSelector(state => state.movie
+    // const currentFilter: string = query.get('filter');
+
+    const {filter:currentFilter} = useAppSelector(state => state.movies);
+
     useEffect(() => {
         dispatch(genreActions.getAll());
     }, [dispatch]);
 
     const actionsObject:{[index:string]:any} = {
-        "all": (currentPage: number, param2: string | null) => dispatch(movieActions.getAll({page: `${currentPage}`})),
+        "all": (currentPage: number) => dispatch(movieActions.getAll({page: `${currentPage}`})),
         "search": (currentPage: number, param2: string|null) => dispatch(movieActions.searchMoviesByName({
             page: `${currentPage}`,
             query: param2
@@ -39,14 +41,11 @@ const SideBar = () => {
     }
 
 
-
     useEffect(() => {
-        // dispatch(movieActions.getAll({page: `${currentPage}`}));
-
         const [key,param2] = convertStringToTuple(currentFilter);
         actionsObject[key](currentPage,param2)
 
-        setSelectedGenreId(currentFilter && (+currentFilter.slice(10).trim()))
+        setSelectedGenreId(currentFilter && (+currentFilter.slice(10).trim()));
 
     }, [currentPage, currentFilter, dispatch]);
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 import {UserInfo} from "../../UserInfo";
 import {Switch} from "../Switch";
@@ -11,13 +11,17 @@ import {movieActions} from "../../../redux/slices";
 const Header = () => {
 const navigate = useNavigate();
 const dispatch = useAppDispatch();
-const handleClick=()=>{
+const location = useLocation();
+    console.log(location.pathname.split("/").pop());
+
+    const handleClick=()=>{
     dispatch(movieActions.setFilter(null));
     navigate("/movies")
 }
     return (
         <nav className={css.header}>
             <div className={css.col_1}>
+                <div className={css.chevron} onClick={()=>navigate(-1)}>⬅</div>
                 <div onClick={handleClick}>Movies</div>
                 <Search/>
             </div>

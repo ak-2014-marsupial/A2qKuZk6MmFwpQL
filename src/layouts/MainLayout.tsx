@@ -2,13 +2,20 @@ import React, {FC, PropsWithChildren} from 'react';
 
 import {Outlet} from "react-router-dom";
 import {Header} from "../components";
+import {SideBar} from "../components/SideBar";
 
 interface IProps extends  PropsWithChildren{}
 const MainLayout:FC<IProps> = () => {
     return (
-        <div >
+        <div className="container" >
+            <div className="side_bar">
+                <SideBar/>
+            </div>
+            <div className="wrapper">
                 <Header/>
-                <Outlet/>
+                <Outlet />
+            </div>
+
 
         </div>
     );

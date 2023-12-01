@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
 }
 
 
@@ -13,6 +14,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background);
+  overflow-x: hidden ;
+  overflow-y: scroll;
 }
 
 code {
@@ -24,4 +27,25 @@ code {
   max-width: 1440px;
   margin: 0 auto;
   display: flex;
+  }
+.wrapper{
+  width: 80vw;
+  position: relative;
+  margin-left: 20vw;
+}
+
+.side_bar{
+  height: 80vh;
+  overflow-y: auto;
+  position: fixed;
+  top: 15vh;
+  z-index: 300;
+  width: 20vw;
+}
+::-webkit-scrollbar{
+  background-color: var(--accent);
+  width: 0.6em;
+}
+::-webkit-scrollbar-thumb{
+  background-color: var(--star-secondary);
 }

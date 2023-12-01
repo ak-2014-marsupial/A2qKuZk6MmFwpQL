@@ -1,14 +1,13 @@
-.error{
+.error {
+    margin-top: 15vh;
     height: 50vh;
-    margin:  auto;
     position: relative;
-
-
-
+    display: flex;
+    justify-content: center;
 }
 
-.error img{
-    width: 100%;
+.error img {
+    width: auto;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
@@ -19,11 +18,14 @@
     transition: all ease 500ms;
 
 }
-.error h1{
+
+.error h1 {
     position: absolute;
-    top:20vh;
-    font-size: 4em;
-    left:-1em;
-    right: -2em;
-    color: var(--text-secondary);
+    top: 25vh;
+    font-size: 5em;
+    /*left:-1em;*/
+    /*right: -2em;*/
+    color: var(--star-primary);
+
+    text-align: center;
 }

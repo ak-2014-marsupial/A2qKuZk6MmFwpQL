@@ -4,16 +4,20 @@ import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
 
 import css from "./Search.module.css";
 import icon from "../../../assets/images/search_find.png"
+import {useAppDispatch} from "../../../hooks";
+import {movieActions} from "../../../redux/slices";
 
 const Search = () => {
     const {register, handleSubmit, reset} = useForm();
     const [, setQuery] = useSearchParams();
     const location = useLocation();
+    const dispatch = useAppDispatch();
 
     const navigate = useNavigate();
 
     const handleSearch = (txt: { search: string }) => {
         if (txt.search.trim().length > 0) {
+            dispatch(movieActions.setFilter(`   search=${txt.search}`));
             setQuery(prev => {
                 if (!(location.pathname === "/movies")) {
                     navigate("/movies")
