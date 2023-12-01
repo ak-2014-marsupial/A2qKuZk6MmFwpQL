@@ -4,8 +4,7 @@ import {AxiosError} from "axios";
 import {moviesService} from "../../services";
 
 interface IMoveInitialState extends IMovieEntries {
-    filter: string;
-    filter2:{genre?:string,search?:string} | null;
+    filter: { genre?: string, search?: string } | null;
     loading: boolean;
     errors: boolean,
 }
@@ -16,7 +15,6 @@ const initialState: IMoveInitialState = {
     total_pages: 0,
     total_results: null,
     filter: null,
-    filter2:null,
     loading: false,
     errors: false,
 }
@@ -66,11 +64,8 @@ const movieSlice = createSlice({
     name: "movieSlice",
     initialState,
     reducers: {
-        setFilter: (state, action: PayloadAction<string>) => {
+        setFilter: (state, action: PayloadAction<{ genre?: string, search?: string }>) => {
             state.filter = action.payload;
-        },
-        setFilter2: (state, action: PayloadAction<{genre?:string,search?:string}>) => {
-            state.filter2 = action.payload;
         },
 
     },

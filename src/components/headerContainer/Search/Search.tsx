@@ -17,8 +17,8 @@ const Search = () => {
 
     const handleSearch = (txt: { search: string }) => {
         if (txt.search.trim().length > 0) {
-            dispatch(movieActions.setFilter(`   search=${txt.search}`));
-            dispatch(movieActions.setFilter2({search:`${txt.search}`}));
+            // dispatch(movieActions.setFilter(`   search=${txt.search}`));
+            dispatch(movieActions.setFilter({search:`${txt.search}`}));
             setQuery(prev => {
                 if (!(location.pathname === "/movies")) {
                     navigate("/movies")

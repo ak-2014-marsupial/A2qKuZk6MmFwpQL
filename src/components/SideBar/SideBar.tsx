@@ -12,7 +12,7 @@ const SideBar = () => {
     const [query] = useSearchParams({});
     const currentPage = +query.get('page') ? +query.get('page') : 1;
 
-    const {filter2: filter} = useAppSelector(state => state.movies);
+    const {filter} = useAppSelector(state => state.movies);
 
     const {genres} = useAppSelector(state => state.genres);
     const actionsObject: { [index: string]: any } = {

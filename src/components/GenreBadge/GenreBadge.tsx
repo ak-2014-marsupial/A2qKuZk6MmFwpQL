@@ -16,15 +16,15 @@ const GenreBadge: FC<IProps> = ({genre: {id, name}}) => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const {filter2} = useAppSelector(state => state.movies);
-    const selectedGenre = filter2 && ("genre" in filter2) && +filter2.genre;
+    const {filter} = useAppSelector(state => state.movies);
+    const selectedGenre = filter && ("genre" in filter) && +filter.genre;
 
 
     const handleClick = (genreId: string) => {
         if (`${selectedGenre}` === genreId) return;
-        dispatch(movieActions.setFilter(`    genre=${genreId}`));
+        // dispatch(movieActions.setFilter(`    genre=${genreId}`));
 
-        dispatch(movieActions.setFilter2({genre: `${genreId}`}));
+        dispatch(movieActions.setFilter({genre: `${genreId}`}));
 
         if (!(location.pathname === "/movies")) {
             navigate("/movies")
