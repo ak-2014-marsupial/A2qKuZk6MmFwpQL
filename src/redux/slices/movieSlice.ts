@@ -5,6 +5,7 @@ import {moviesService} from "../../services";
 
 interface IMoveInitialState extends IMovieEntries {
     filter: string;
+    filter2:{[key:string]:string} | null;
     loading: boolean;
     errors: boolean,
 }
@@ -15,6 +16,7 @@ const initialState: IMoveInitialState = {
     total_pages: 0,
     total_results: null,
     filter: null,
+    filter2:null,
     loading: false,
     errors: false,
 }

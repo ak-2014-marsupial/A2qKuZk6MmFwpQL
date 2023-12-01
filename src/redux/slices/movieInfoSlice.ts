@@ -10,6 +10,7 @@ interface IMovieInfoState {
     loadingMovieInfo: boolean,
     loadingActors: boolean,
     errors: boolean,
+    isVisible:boolean,
 }
 
 const initialState: IMovieInfoState = {
@@ -18,6 +19,7 @@ const initialState: IMovieInfoState = {
     loadingActors: false,
     loadingMovieInfo: false,
     errors: false,
+    isVisible:false,
 }
 const getMovieInfo = createAsyncThunk<IMovieInfo, { id: string }>(
     "movieInfoSlice/getMovieInfo",
@@ -53,6 +55,9 @@ const movieInfoSlice = createSlice({
         resetMovieInfo: (state) => {
             state.movieInfo = null;
             state.actors = [];
+        },
+        setVisible:(state,action)=>{
+            state.isVisible=action.payload;
         }
     },
     extraReducers: builder =>

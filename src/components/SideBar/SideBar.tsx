@@ -16,19 +16,19 @@ const SideBar = () => {
 
     // const currentFilter: string = query.get('filter');
 
-    const {filter:currentFilter} = useAppSelector(state => state.movies);
+    const {filter: currentFilter} = useAppSelector(state => state.movies);
 
     useEffect(() => {
         dispatch(genreActions.getAll());
     }, [dispatch]);
 
-    const actionsObject:{[index:string]:any} = {
+    const actionsObject: { [index: string]: any } = {
         "all": (currentPage: number) => dispatch(movieActions.getAll({page: `${currentPage}`})),
-        "search": (currentPage: number, param2: string|null) => dispatch(movieActions.searchMoviesByName({
+        "search": (currentPage: number, param2: string | null) => dispatch(movieActions.searchMoviesByName({
             page: `${currentPage}`,
             query: param2
         },)),
-        "genre": (currentPage: number, param2: string|null) => dispatch(movieActions.getAllByGenreId({
+        "genre": (currentPage: number, param2: string | null) => dispatch(movieActions.getAllByGenreId({
             page: `${currentPage}`,
             genreId: param2
         }))
@@ -42,17 +42,23 @@ const SideBar = () => {
 
 
     useEffect(() => {
-        const [key,param2] = convertStringToTuple(currentFilter);
-        actionsObject[key](currentPage,param2)
+        const [key, param2] = convertStringToTuple(currentFilter);
+        actionsObject[key](currentPage, param2)
 
         setSelectedGenreId(currentFilter && (+currentFilter.slice(10).trim()));
 
     }, [currentPage, currentFilter, dispatch]);
 
     const {genres} = useAppSelector(state => state.genres);
+
     return (
         <div className={css.side_bar}>
-            {genres && genres.map(genre => <GenreBadge key={genre.id} genre={genre} selectedGenre={selectedGenreId}/>)}
+            <div className={css.title_list}>Genres</div>
+            <div className={css.scroll}>
+                {genres && genres.map(genre => <GenreBadge key={genre.id} genre={genre}
+                                                           selectedGenre={selectedGenreId}/>)}
+
+            </div>
         </div>
     );
 };

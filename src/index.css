@@ -35,17 +35,10 @@ code {
 }
 
 .side_bar{
-  height: 80vh;
-  overflow-y: auto;
+  height: 100vh;
   position: fixed;
-  top: 15vh;
+  top: 0;
   z-index: 300;
   width: 20vw;
-}
-::-webkit-scrollbar{
-  background-color: var(--accent);
-  width: 0.6em;
-}
-::-webkit-scrollbar-thumb{
-  background-color: var(--star-secondary);
+  border-right: 2px solid var(--accent-hover);
 }

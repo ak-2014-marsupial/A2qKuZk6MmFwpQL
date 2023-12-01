@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 
 import StarRatings from "react-star-ratings";
 
@@ -7,11 +7,11 @@ import "../../../constants/var.css";
 import {PosterPreview} from "../../PosterPreview";
 import {GenreBadge} from "../../GenreBadge";
 import {ActorList} from "../../actorsContainer";
-import {useAppSelector} from "../../../hooks";
+import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {Loader} from "../../Loader";
 import {ErrorPage} from "../../../pages/MoviesPage";
 
-import chevron from "../../../assets/images/chevron-left-icon.svg";
+import {movieInfoActions} from "../../../redux/slices/movieInfoSlice";
 
 
 
@@ -24,9 +24,18 @@ const MovieInfo: FC = () => {
     // ====================================================================================
 
     const {movieInfo,errors} = useAppSelector(state => state.movieInfo);
-    const {filter} = useAppSelector(state => state.movies);
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        dispatch(movieInfoActions.setVisible(true));
+
+        return ()=> {
+            dispatch(movieInfoActions.setVisible(false))
+        };
+    }, [dispatch]);
+
     if(errors) return <ErrorPage/>;
     if(!movieInfo) return <Loader/>;
+
 
     const {poster_path, title, release_date, vote_average, genres, runtime, overview} = movieInfo;
     return (
