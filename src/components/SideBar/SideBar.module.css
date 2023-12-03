@@ -1,44 +1,62 @@
-.side_bar{
+.side_bar {
     margin: 15vh 0 0 2em;
     padding: 0.5em;
-
-    /*border: 2px solid var(--choise);*/
-
 }
-.scroll{
+
+.scroll {
     height: 75vh;
     padding: 0.5em 1em;
     margin: 0.5em;
     overflow-y: auto;
 }
 
-::-webkit-scrollbar{
-  background-color: var(--accent);
-  width: 0.6em;
-}
-::-webkit-scrollbar-thumb{
-  background-color: var(--star-secondary);
-}
-
-
-.title_list{
+::-webkit-scrollbar {
     background-color: var(--accent);
-    /*box-shadow: var(--shadow);*/
-    /*border:1px solid var(--border);*/
-    color:var(--text-primary);
+    width: 0.6em;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--star-secondary);
+}
+
+
+.title_list {
+    background-color: var(--accent);
+    color: var(--text-primary);
     border-radius: 0.4em;
-    min-width:10%;
+    min-width: 10%;
+    text-align: center;
+    font-size: 1.2em;
+    padding: 0.2em;
+    margin-bottom: 0.5em;
+
+    position: relative;
+}
+
+
+.selected {
+    background-color: var(--choise);
+}
+
+.helper {
+
+    background-color: var(--choise);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    border-radius: 0.4em;
+    width: 90%;
     text-align: center;
     font-size: 1.2em;
     padding: 0.2em;
     margin-bottom: 0.5em;
     cursor: pointer;
-}
-.title_list:hover{
-    box-shadow: 0 0 10px var(--accent-hover), 0 0 10px var(--accent-hover), 0 0 10px var(--accent-hover), 0 0 10px var(--accent-hover),  0 0 10px var(--accent-hover) ;
+    z-index: 100;
+    position: absolute;
 }
 
-.selected{
-    background-color: var(--choise);
-    /*opacity: 70%;*/
+
+.helper:hover {
+    box-shadow: 0 0 10px var(--accent-hover), 0 0 10px var(--accent-hover), 0 0 10px var(--accent-hover), 0 0 10px var(--accent-hover), 0 0 10px var(--accent-hover);
+    background-color: #FCDADA;
 }

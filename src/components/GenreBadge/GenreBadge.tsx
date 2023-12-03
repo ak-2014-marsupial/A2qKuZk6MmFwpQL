@@ -22,7 +22,6 @@ const GenreBadge: FC<IProps> = ({genre: {id, name}}) => {
 
     const handleClick = (genreId: string) => {
         if (`${selectedGenre}` === genreId) return;
-        // dispatch(movieActions.setFilter(`    genre=${genreId}`));
 
         dispatch(movieActions.setFilter({genre: `${genreId}`}));
 
@@ -42,7 +41,6 @@ const GenreBadge: FC<IProps> = ({genre: {id, name}}) => {
              onClick={() => handleClick(`${id}`)}>
             {name}
         </div>
-
     );
 }
 

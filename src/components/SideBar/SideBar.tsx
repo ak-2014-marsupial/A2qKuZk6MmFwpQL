@@ -1,20 +1,22 @@
 import React, {useEffect} from 'react';
 
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {useSearchParams} from "react-router-dom";
+import {useNavigate, useSearchParams} from "react-router-dom";
 import {genreActions, movieActions} from "../../redux/slices";
 import {GenreBadge} from "../GenreBadge";
+import {convertor} from "../utils";
 import css from "./SideBar.module.css"
 
 const SideBar = () => {
     const dispatch = useAppDispatch();
-
+    const navigate = useNavigate();
     const [query] = useSearchParams({});
     const currentPage = +query.get('page') ? +query.get('page') : 1;
 
     const {filter} = useAppSelector(state => state.movies);
 
     const {genres} = useAppSelector(state => state.genres);
+
     const actionsObject: { [index: string]: any } = {
         "all": (currentPage: number) => dispatch(movieActions.getAll({page: `${currentPage}`})),
         "search": (currentPage: number, param2: string | null) => dispatch(movieActions.searchMoviesByName({
@@ -27,29 +29,26 @@ const SideBar = () => {
         }))
     }
 
-    const convertor = (filter: { [index: string]: string } | null): { key: string, param2: string | null } => {
-        if (!filter) {
-            return {key: "all", param2: null};
-        } else {
-            const key = Object.keys(filter)[0];
-            return {key, param2: filter[key]};
-        }
-    }
+
 
     useEffect(() => {
         dispatch(genreActions.getAll());
     }, [dispatch]);
+    const helper = convertor(filter);
 
 
     useEffect(() => {
-        const {key, param2} = convertor(filter);
-        actionsObject[key](currentPage, param2)
-
+        actionsObject[helper.key](currentPage, helper.param2);
     }, [currentPage, filter, dispatch]);
 
+    const handleClick =()=>{
+        dispatch(movieActions.setFilter(null));
+        navigate("/movies")
+    }
 
     return (
         <div className={css.side_bar}>
+            { helper.param2 && <div className={css.helper} onClick={handleClick}>{helper.title}</div>}
             <div className={css.title_list}>Genres</div>
             <div className={css.scroll}>
                 {genres && genres.map(genre => <GenreBadge key={genre.id} genre={genre}/>)}
@@ -59,3 +58,6 @@ const SideBar = () => {
 };
 
 export {SideBar};
+
+// [css.helper, helper.key?css.visible:""].join(" ")
+

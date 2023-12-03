@@ -31,7 +31,6 @@ const Pagination: FC = () => {
     }
 
     const handleNext = () => {
-        console.log(page," total",total_pages);
         if (page >= total_pages) {
 
             return
