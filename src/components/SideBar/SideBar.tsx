@@ -6,6 +6,8 @@ import {genreActions, movieActions} from "../../redux/slices";
 import {GenreBadge} from "../GenreBadge";
 import {convertor} from "../utils";
 import css from "./SideBar.module.css"
+import {UserInfo} from "../UserInfo";
+import {Switch} from "../headerContainer";
 
 const SideBar = () => {
     const dispatch = useAppDispatch();
@@ -30,7 +32,6 @@ const SideBar = () => {
     }
 
 
-
     useEffect(() => {
         dispatch(genreActions.getAll());
     }, [dispatch]);
@@ -41,14 +42,16 @@ const SideBar = () => {
         actionsObject[helper.key](currentPage, helper.param2);
     }, [currentPage, filter, dispatch]);
 
-    const handleClick =()=>{
+    const handleClick = () => {
         dispatch(movieActions.setFilter(null));
         navigate("/movies")
     }
 
     return (
         <div className={css.side_bar}>
-            { helper.param2 && <div className={css.helper} onClick={handleClick}>{helper.title}</div>}
+            <UserInfo/>
+            <Switch/>
+            {helper.param2 && <div className={css.helper} onClick={handleClick}>{helper.title}</div>}
             <div className={css.title_list}>Genres</div>
             <div className={css.scroll}>
                 {genres && genres.map(genre => <GenreBadge key={genre.id} genre={genre}/>)}

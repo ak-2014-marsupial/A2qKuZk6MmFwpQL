@@ -1,6 +1,13 @@
 .user_info {
     border: 1px solid var(--text-secondary);
     border-radius: 0.5em;
+    height: 100%;
+    color: var(--text-secondary);
+    font-size: 0.7em;
+    margin-right: 0.5em;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
 }
 
 .user_info img {

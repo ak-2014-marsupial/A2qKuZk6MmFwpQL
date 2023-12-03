@@ -1,6 +1,6 @@
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     color: var(--text-primary);
     height: 10vh;
@@ -10,7 +10,6 @@
     opacity: 0.9;
     z-index: 20;
     background-color: var(--background);
-    font-size: 1.4em;
     margin-top: 0.3em;
     font-weight: bold;
 }
@@ -40,13 +39,6 @@
     gap: 0.5em;
 }
 
-
-.avatar {
-    height: 100%;
-    color: var(--text-secondary);
-    font-size: 0.7em;
-    margin-right: 0.5em;
-}
 
 .chevron {
     color: var(--accent-hover);

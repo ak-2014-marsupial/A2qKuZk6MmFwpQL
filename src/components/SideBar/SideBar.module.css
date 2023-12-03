@@ -1,10 +1,12 @@
 .side_bar {
-    margin: 15vh 0 0 2em;
+    margin-left:2em;
     padding: 0.5em;
+
+
 }
 
 .scroll {
-    height: 75vh;
+    height: 65vh;
     padding: 0.5em 1em;
     margin: 0.5em;
     overflow-y: auto;
@@ -60,3 +62,5 @@
     box-shadow: 0 0 10px var(--accent-hover), 0 0 10px var(--accent-hover), 0 0 10px var(--accent-hover), 0 0 10px var(--accent-hover), 0 0 10px var(--accent-hover);
     background-color: #FCDADA;
 }
+
+
