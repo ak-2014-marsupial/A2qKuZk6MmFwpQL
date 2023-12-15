@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/MoviesDB_mini_project_RTK/static/css/main.ce7644c5.css",
+    "main.js": "/MoviesDB_mini_project_RTK/static/js/main.8d72fe23.js",
+    "static/media/somethinWentWrong.png": "/MoviesDB_mini_project_RTK/static/media/somethinWentWrong.ff6fb4bedb4b762180dc.png",
+    "static/media/notFound.png": "/MoviesDB_mini_project_RTK/static/media/notFound.4275555fdc288de97838.png",
+    "static/media/astronautpissing.png": "/MoviesDB_mini_project_RTK/static/media/astronautpissing.27b0638fa81088ae46dc.png",
+    "static/media/search_find.png": "/MoviesDB_mini_project_RTK/static/media/search_find.274fe1201b5c46963beb.png",
+    "index.html": "/MoviesDB_mini_project_RTK/index.html",
+    "main.ce7644c5.css.map": "/MoviesDB_mini_project_RTK/static/css/main.ce7644c5.css.map",
+    "main.8d72fe23.js.map": "/MoviesDB_mini_project_RTK/static/js/main.8d72fe23.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ce7644c5.css",
+    "static/js/main.8d72fe23.js"
+  ]
+}
